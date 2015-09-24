@@ -1,7 +1,11 @@
 var logger = require( 'morgan' );
 
 var mongoose = require( 'mongoose' );
-mongoose.connect( 'mongodb://localhost/
+
+var DB = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/mean-articles';
+
+mongoose.connect( DB );
+
 var Passenger = require( "./models/passenger" );
 var Flight    = require( "./models/flight" );
 var Terminal  = require( "./models/terminal" );
@@ -46,3 +50,5 @@ airport1.terminals.push({
 console.log( airport1 );
 console.log( airport1.terminals );
 airport1.save();
+
+app.set('port', (process.env.PORT || 5000));  
